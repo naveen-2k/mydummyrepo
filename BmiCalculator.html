@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        BMI Calculator
+    </title>
+</head>
+
+<body class="main">
+    <p style="font-size:40px">BMI Calculator</p>
+
+    <div class="box">
+        <img src="" />
+        <p>Height in cm</p>
+        <span><input type="range" min="0" max="220" id="height" value="0" onchange="calculate(this.value)" /><p id="hval">0</p></span>
+        <p>Weight in kg</p>
+        <span><input type="range" min="0" max="150" id="weight" value="0" onchange="calculates(this.value)" /><p id="wval">0</p></span>
+        <p>BMI</p>
+        <span><input type="range" min="0" max="100" id="bmirange" value="0" /><p id="bmi">0</p></span>
+        <p id="score"></p>
+    </div>
+    <script>
+        function calculate(heightv) {
+            var heightValue = document.getElementById('hval');
+            heightValue.innerHTML = heightv;
+            bmicalc();
+        }
+
+        function calculates(Weightv) {
+            var Weight = document.getElementById('wval');
+            Weight.innerHTML = Weightv;
+            bmicalc();
+        }
+
+        function bmicalc() {
+            var heightValue = document.getElementById('hval').innerHTML;
+            var Weight = document.getElementById('wval').innerHTML;
+            var br = document.getElementById('bmirange');
+            var h = parseFloat(heightValue);
+            var w = parseFloat(Weight);
+            var bmi = parseFloat(w / ((h / 100) * (h / 100))).toFixed(2);
+            br.value = bmi;
+            var c = document.getElementsByClassName('box');
+            document.getElementById('bmi').innerHTML = bmi;
+            if (bmi < 17) {
+                document.getElementById('score').innerHTML = "under weight";
+
+            } else if (bmi >= 17 && bmi <= 25) {
+                document.getElementById('score').innerHTML = "Normal";
+            } else {
+                document.getElementById('score').innerHTML = "over Weight";
+            }
+        }
+    </script>
+
+</body>
+<style>
+    .main {
+        padding: 3px;
+        background-color: rgb(64, 60, 60);
+        font-size: 100%;
+    }
+    
+    .main p {
+        text-align: center;
+        color: rgb(70, 176, 229);
+        text-shadow: 1px 1px 3px rgb(92, 139, 156);
+    }
+    
+    .box p {
+        text-align: center;
+        color: chartreuse;
+        text-shadow: 1px 1px 3px rgb(178, 212, 126);
+    }
+    
+    .box {
+        width: fit-content;
+        height: fit-content;
+        border: solid 2px black;
+        border-radius: 12px;
+        padding-top: -2px;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-left: 44%;
+        margin-top: 4%;
+        box-shadow: 2px 2px 10px 2px rgb(38, 229, 96);
+    }
+    
+    .box span {
+        display: flex;
+    }
+    
+    .box p {
+        text-align: center;
+    }
+</style>
+
+</html>
